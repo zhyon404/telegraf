@@ -3,6 +3,7 @@ package docker
 import (
 	"context"
 	"crypto/tls"
+	"log"
 	"net/http"
 
 	"github.com/docker/docker/api/types"
@@ -27,6 +28,7 @@ func NewEnvClient() (Client, error) {
 	if err != nil {
 		return nil, err
 	}
+	log.Printf("I! New env client %#v", client)
 	return &SocketClient{client}, nil
 }
 
@@ -46,6 +48,7 @@ func NewClient(host string, tlsConfig *tls.Config) (Client, error) {
 	if err != nil {
 		return nil, err
 	}
+	log.Printf("I! New client %#v", client)
 	return &SocketClient{client}, nil
 }
 

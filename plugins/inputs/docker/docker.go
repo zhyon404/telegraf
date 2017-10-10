@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"regexp"
 	"strconv"
@@ -195,6 +196,7 @@ func (d *Docker) gatherInfo(acc telegraf.Accumulator) error {
 	// Get info from docker daemon
 	ctx, cancel := context.WithTimeout(context.Background(), d.Timeout.Duration)
 	defer cancel()
+	log.Printf("I! client %#v", d.client)
 	info, err := d.client.Info(ctx)
 	if err != nil {
 		return err
